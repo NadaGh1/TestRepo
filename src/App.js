@@ -1,83 +1,29 @@
-import React from 'react'
-//import Navbar from './components/Navbar'
-//import MainContent from './components/MainContent'
-//import Footer from './components/Footer'
-//import Joke from './components/Joke'
+import React from 'react';
+import { Route } from 'react-router-dom';
+import './App.css';
+import Ninjas from "./components/Ninjas";
+import AddNinja from "./components/AddNinja";
+import EditNinja from "./components/EditNinja";
+import Header from "./components/Header";
 
-/*function App(){
+function App() {
   return (
-    <div>
-      <Navbar/>
-      <MainContent/>
-      <Footer/>
+    <div className="App">
+      <Header />
+      <Route
+        exact
+        path="/" component={Ninjas} 
+      />
+      <Route
+        exact
+        path="/addNinja" component={AddNinja} 
+      />
+      <Route
+        exact
+        path="/editNinja/:id" component={EditNinja} 
+      />
     </div>
-  )
-}*/
-
-/*function App(){
-  return (
-    <div>
-      <input type="checkbox"/>
-      <p>put text here</p>
-
-      <input type="checkbox"/>
-      <p>put text here</p>
-
-      <input type="checkbox"/>
-      <p>put text here</p>
-
-      <input type="checkbox"/>
-      <p>put text here</p>
-    </div>
-  )
-}*/
-
-/*
-function App(){
-  return (
-    <div>
-    <Joke
-    question="What is this?" punchLine="I don't know"/>
-    <Joke
-    question="What is this?" punchLine="I don't know"/>
-    <Joke
-    question="What is this?" punchLine="I don't know"/>
-    <Joke
-    question="What is this?" punchLine="I don't know"/>
-    <Joke
-    question="What is this?" punchLine="I don't know"/>
-    </div>
-  )
-}*/
-
-class App extends React.Component(){
-
-  constructor(){
-    super()
-    this.state= {
-      isLoggedIn: false
-    }
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick(){
-    this.setState(prevState => {
-      return{
-        isLoggedIn: !prevState.isLoggedIn
-    }
-
-    } 
-      )
-  }
-
-  render(){
-    return(
-      <div>
-        <button onClick={this.handleClick}>Click me</button>
-      </div>
-    )
-  }
+  );
 }
 
-
-export default App
+export default App;
