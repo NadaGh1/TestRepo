@@ -1,0 +1,3 @@
+  
+export const SET_NINJAS = 'SET_NINJAS';
+export const SUCCES_DELETE_NINJA = 'SUCCES_DELETE_NINJA';

@@ -1,6 +1,6 @@
 import React, { Component} from "react";
 import axios from "axios";
-
+// import action addNinja 
 class AddNinja extends Component {
   state = {
     name: '',
@@ -16,7 +16,8 @@ class AddNinja extends Component {
       rank: this.state.rank,
       available: this.state.available,
     }
-
+// dipatch action te5ou en parametre ninja
+// this.props.history.push("/")
     axios.post('http://localhost:4000/api/ninjas', ninja)
     .then(() => { 
       this.props.history.push("/")
@@ -34,8 +35,6 @@ class AddNinja extends Component {
       rank,
     } = this.state;
 
-    console.log("name", name);
-    console.log("rank", rank);
     return (
       <form onSubmit={this.onSubmit}>
         <input type="text" name="name" value={name} onChange={this.handleInputChange}/>
@@ -45,5 +44,7 @@ class AddNinja extends Component {
     )
   }
 }
+
+// mapDispatchToProps addNinja
 
 export default AddNinja;
