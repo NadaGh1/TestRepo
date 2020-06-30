@@ -5,6 +5,7 @@ import Ninjas from "./components/Ninjas";
 import AddNinja from "./components/AddNinja";
 import EditNinja from "./components/EditNinja";
 import Header from "./components/Header";
+import NinjasRedux from "./components/NinjasRedux";
 
 function App() {
   return (
@@ -13,6 +14,10 @@ function App() {
       <Route
         exact
         path="/" component={Ninjas} 
+      />
+      <Route
+        exact
+        path="/ninjasRedux" component={NinjasRedux} 
       />
       <Route
         exact
