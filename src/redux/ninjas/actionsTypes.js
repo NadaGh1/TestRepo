@@ -1,3 +1,5 @@
   
 export const SET_NINJAS = 'SET_NINJAS';
 export const SUCCES_DELETE_NINJA = 'SUCCES_DELETE_NINJA';
+export const SET_CURRENT_NINJA = 'SET_CURRENT_NINJA';
+export const SET_ADDED_NINJA = 'SET_ADDED_NINJA';

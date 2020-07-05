@@ -13,12 +13,14 @@ class NinjasRedux extends  Component {
 
 
   render() {
-    console.log("this", this.props)
+    const {
+      history
+    } = this.props;
 
     return (
       <div>
           <div>
-            <Link to="/addNinja">add new ninja</Link>
+            <Link to="/addNinjaRedux">add new ninja</Link>
           <table>
             <caption>Ninjas</caption>
             <thead>
@@ -36,7 +38,9 @@ class NinjasRedux extends  Component {
                <th>{ninja.rank}</th>
                <th>
                  <button
-                   onClick={() => this.props.history.push(`/editNinja/${ninja._id}`)}
+                   onClick={() => 
+                    history.push(`/editNinjaRedux/${ninja._id}`)
+                   }
                   >
                     edit
                   </button>
@@ -63,6 +67,7 @@ const mapDispatchToProps = (dispatch) => ({
   deleteNinja: (id) => {
     dispatch(deleteNinjaAction(id));
   }
+ 
 })
 
 // bch ymapi les states glo w yraja3hom props lil composant

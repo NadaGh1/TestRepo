@@ -8,11 +8,9 @@ class EditNinja extends React.Component {
   }
 
   componentDidMount () {
-    console.log("props", this.props.match.params.id)
     axios.get(`http://localhost:4000/api/ninjas/${this.props.match.params.id}`)
     .then(response => {
       const data = response.data;
-      console.log("data", data)
       this.setState({ name: data.ninja.name, rank: data.ninja.rank, loadNinjas: false })
     })
   }
