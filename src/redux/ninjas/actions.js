@@ -35,6 +35,25 @@ export const getNinjasAction = () => {
       });
     };
   }
+  /*console.log("props", this.props.match.params.id)
+  axios.get(`http://localhost:4000/api/ninjas/${this.props.match.params.id}`)
+  .then(response => {
+    const data = response.data;
+    console.log("data", data)
+    this.setState({ name: data.ninja.name, rank: data.ninja.rank, loadNinjas: false })*/
+
+  export const getNinjaActionById = (id) => {
+    return(dispatch) => {
+        axios.get(`${apiUrl}/${id}`)
+        .then( async(response) => {
+          dispatch(setNinjasAction({ name: response.data.ninja.name, rank:response.data.ninja.rank}));
+        })
+        .catch(error=> { 
+          // dispatch(searchUserFailed(error));
+          throw(error);
+        });
+      };
+    }
 
 
 export const deleteNinjaAction = (id) => {
@@ -49,3 +68,31 @@ export const deleteNinjaAction = (id) => {
       });
     };
   }
+
+  export const addNinjaAction = (ninja) => {
+    return(dispatch) => {
+        axios.post(apiUrl,ninja)
+        .then( async(reponse) => {
+         // this.props.history.push("/")
+          dispatch(setNinjasAction(reponse.data.ninjas));
+        })
+        .catch(error=> { 
+          // dispatch(searchUserFailed(error));
+          throw(error);
+        });
+      };
+    }
+
+    export const updateNinjaAction = (id, ninja) => {
+      return(dispatch) => {
+          axios.put(`${apiUrl}/${id}`,ninja)
+          .then( async(reponse) => {
+           // this.props.history.push("/")
+            dispatch(setNinjasAction(reponse.data.ninjas));
+          })
+          .catch(error=> { 
+            // dispatch(searchUserFailed(error));
+            throw(error);
+          });
+        };
+      }
