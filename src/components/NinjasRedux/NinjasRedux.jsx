@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
-import { getNinjasAction, deleteNinjaAction, addNinjaAction, updateNinjaAction } from "../../redux/ninjas/actions";
+import { getNinjasAction, deleteNinjaAction } from "../../redux/ninjas/actions";
 
 class NinjasRedux extends  Component {
 
@@ -13,7 +13,6 @@ class NinjasRedux extends  Component {
 
 
   render() {
-    console.log("this", this.props)
     const {
       history
     } = this.props;

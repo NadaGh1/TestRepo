@@ -1,5 +1,5 @@
 import React, { Component} from "react";
-import axios from "axios";
+import { connect } from 'react-redux';
 
 import { addNinjaAction } from "../../redux/ninjas/actions";
 
@@ -25,6 +25,8 @@ class AddNinjaRedux extends Component {
       this.props.history.push("/")
     });*/
     this.props.addNinja(ninja);
+    this.props.history.push("/ninjasRedux")
+
   }
 
    handleInputChange = (event) => {

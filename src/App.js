@@ -6,8 +6,8 @@ import AddNinja from "./components/AddNinja";
 import EditNinja from "./components/EditNinja";
 import Header from "./components/Header";
 import NinjasRedux from "./components/NinjasRedux";
-import AddNinjaRedux from "./components/NinjasRedux";
-import EditNinjaRedux from "./components/NinjasRedux";
+import AddNinjaRedux from "./components/NinjasRedux/AddNinjaRedux";
+import EditNinjaRedux from "./components/NinjasRedux/EditNinjaRedux";
 
 function App() {
   return (

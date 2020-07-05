@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { SET_NINJAS, SUCCES_DELETE_NINJA } from "./actionsTypes";
+import { SET_NINJAS, SUCCES_DELETE_NINJA, SET_CURRENT_NINJA, SET_ADDED_NINJA } from "./actionsTypes";
 const apiUrl = 'http://localhost:4000/api/ninjas';
 
 export const setNinjasAction = (ninjas) => {
@@ -20,7 +20,20 @@ export const setNinjasAction = (ninjas) => {
       }
      }
     }
+
+    export const setCurrentNinjaAction = (currentNinja) => {
+      return {
+        type : SET_CURRENT_NINJA,
+        currentNinja,
+       }
+      }
     
+      export const setAddedNinjaAction = (newNinja) => {
+        return {
+          type : SET_ADDED_NINJA,
+          newNinja,
+         }
+        }
   
 
 export const getNinjasAction = () => {
@@ -46,7 +59,7 @@ export const getNinjasAction = () => {
     return(dispatch) => {
         axios.get(`${apiUrl}/${id}`)
         .then( async(response) => {
-          dispatch(setNinjasAction({ name: response.data.ninja.name, rank:response.data.ninja.rank}));
+          dispatch(setCurrentNinjaAction(response.data.ninja));
         })
         .catch(error=> { 
           // dispatch(searchUserFailed(error));
@@ -74,7 +87,7 @@ export const deleteNinjaAction = (id) => {
         axios.post(apiUrl,ninja)
         .then( async(reponse) => {
          // this.props.history.push("/")
-          dispatch(setNinjasAction(reponse.data.ninjas));
+         dispatch(setAddedNinjaAction(reponse.data));
         })
         .catch(error=> { 
           // dispatch(searchUserFailed(error));
@@ -84,11 +97,12 @@ export const deleteNinjaAction = (id) => {
     }
 
     export const updateNinjaAction = (id, ninja) => {
+
       return(dispatch) => {
           axios.put(`${apiUrl}/${id}`,ninja)
           .then( async(reponse) => {
-           // this.props.history.push("/")
-            dispatch(setNinjasAction(reponse.data.ninjas));
+            // console.log("")
+           // dispatch(setNinjasAction(reponse.data.ninjas));
           })
           .catch(error=> { 
             // dispatch(searchUserFailed(error));

@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import { connect } from 'react-redux';
 
 import { updateNinjaAction, getNinjaActionById } from "../../redux/ninjas/actions";
 class EditNinjaRedux extends React.Component {
@@ -17,23 +17,19 @@ class EditNinjaRedux extends React.Component {
       console.log("data", data)
       this.setState({ name: data.ninja.name, rank: data.ninja.rank, loadNinjas: false })
     })*/
-
-    this.props.getNinjaById(ninja._id);
+    this.props.getNinjaById(this.props.match.params.id);
   }
 
-  onSubmit = (e) => {
+  onSubmit = async (e) => {
     e.preventDefault();
 
     const ninja = {
-      name: this.state.name,
-      rank: this.state.rank,
+      name: this.state.name || this.props.currentNinja.name,
+      rank: this.state.rank || this.props.currentNinja.rank,
     }
 
-    this.props.updateNinja(ninja._id);
-   /* axios.put(`http://localhost:4000/api/ninjas/${this.props.match.params.id}`, ninja)
-    .then(() => {
-      this.props.history.push("/")
-    });*/
+    await this.props.updateNinja(this.props.match.params.id, ninja);
+    window.location.href= "/ninjasRedux"
   }
 
   handleInputChange = (event) => {
@@ -47,12 +43,14 @@ class EditNinjaRedux extends React.Component {
       name,
       rank,
     } = this.state;
+
     return (
       <div>
 
        <form onSubmit={this.onSubmit}>
-        <input type="text" name="name" value={name} onChange={this.handleInputChange}/>
-        <input type="text" name="rank" value={rank} onChange={this.handleInputChange}/>
+         {/* ken name vide nekhou valeur mte3 this.props.currentNinja.name */}
+          <input type="text" name="name" value={name || this.props.currentNinja.name} onChange={this.handleInputChange}/>
+        <input type="text" name="rank" value={rank || this.props.currentNinja.rank} onChange={this.handleInputChange}/>
         <button variant="success" type="submit"> edit ninja</button> 
       </form>
       </div>
@@ -60,14 +58,19 @@ class EditNinjaRedux extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  currentNinja: state.ninjaReducer.currentNinja, // bech yejbed state mte3 reducer
+});
+
+
 const mapDispatchToProps = (dispatch) => ({
     
-    updateNinja: (id) => {
-        dispatch(updateNinjaAction(id));
+    updateNinja: (id, ninja) => {
+        dispatch(updateNinjaAction(id, ninja));
       },
     getNinjaById: (id) => {
         dispatch(getNinjaActionById(id));
     } 
   })
 
-  export default connect(null, mapDispatchToProps)(EditNinjaRedux);
+  export default connect(mapStateToProps, mapDispatchToProps)(EditNinjaRedux);
